@@ -1,12 +1,12 @@
 <template>
   <div class="icons">
-    <swiper>
+    <swiper :options="swiperOptions">
       <swiper-slide v-for="(page, index) of pages" :key='index'>
         <div v-for='item of page' class="icon" :key='item.id'>
           <div class="icon-img">
             <img :src='item.imgUrl' />
           </div>
-          <p>{{item.content}}</p>
+          <p>{{item.desc}}</p>
         </div>
       </swiper-slide>
     </swiper>
@@ -16,49 +16,14 @@
 <script>
 export default {
   name: 'HomeIcons',
-  data: function () {
+  props: {
+    iconList: Array
+  },
+  data () {
     return {
-      iconList: [{
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-        content: '景点门票',
-        id: '0001'
-      }, {
-        imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20194/91a810441506568937171df66f754375.png',
-        content: '红石林',
-        id: '0002'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '株洲必游',
-        id: '0003'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0004'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0005'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0006'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0007'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0008'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0009'
-      }, {
-        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-        content: '景点门票',
-        id: '0010'
-      }]
+      swiperOptions: {
+        autoPlay: false
+      }
     }
   },
   computed: {
