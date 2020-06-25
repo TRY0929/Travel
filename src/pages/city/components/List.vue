@@ -1,5 +1,5 @@
 <template>
-  <div class="list" ref='wrapper'>
+  <div class="list" ref="wrapper">
     <div>
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
@@ -25,6 +25,7 @@
         class="area"
         v-for='(item, key) of cities'
         :key='key'
+        :ref='key'
       >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
@@ -45,10 +46,22 @@ export default {
   name: 'CityList',
   props: {
     cities: Object,
-    hotCities: Array
+    hotCities: Array,
+    letter: String
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper, {})
+    this.$nextTick(() => {
+      this.scroll = new BScroll(this.$refs.wrapper, {click: true})
+      console.log(this.scroll)
+    })
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const el = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(el, 0, 0)
+      }
+    }
   }
 }
 </script>
