@@ -8,13 +8,20 @@
         v-model='keyword'
       />
     </div>
-    <div class="search-content" ref='search'>
+    <div
+      class="search-content"
+      ref='search'
+      v-show='keyword'
+    >
       <ul>
         <li
           v-for='item of list'
           :key='item.id'
           class='search-item border-bottom'
         >{{item.name}}</li>
+        <li class='search-item border-bottom' v-show='hasNotData'>
+          没有找到匹配数据
+        </li>
       </ul>
     </div>
   </div>
@@ -35,10 +42,19 @@ export default {
   props: {
     cities: Object
   },
+  computed: {
+    hasNotData () {
+      return !this.list.length
+    }
+  },
   watch: {
     keyword () {
       if (this.timer) {
         clearTimeout(this.timer)
+      }
+      if (!this.keyword) {
+        this.list = []
+        return
       }
       this.timer = setTimeout(() => {
         const result = []
@@ -77,11 +93,12 @@ export default {
      color: #ccc
      padding: 0 .1rem
   .search-content
+    background-color: #eee
     width: 100%
     position: absolute
     top: 1.58rem
     left: 0
-    rigth: 0
+    right: 0
     bottom: 0
     overflow: hidden
     z-index: 1

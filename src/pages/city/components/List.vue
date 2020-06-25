@@ -49,12 +49,6 @@ export default {
     hotCities: Array,
     letter: String
   },
-  mounted () {
-    this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, {click: true})
-      console.log(this.scroll)
-    })
-  },
   watch: {
     letter () {
       if (this.letter) {
@@ -62,6 +56,11 @@ export default {
         this.scroll.scrollToElement(el, 0, 0)
       }
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.scroll = new BScroll(this.$refs.wrapper, {click: true})
+    })
   }
 }
 </script>
@@ -76,6 +75,7 @@ export default {
     &:before
       border-color: #ccc
   .list
+    width: 100%
     position: absolute
     top: 1.58rem
     left: 0
