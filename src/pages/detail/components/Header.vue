@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     handleScroll () {
-      console.log('scroll')
       const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
       if (top > 60) {
         this.showAbs = false
@@ -48,7 +47,6 @@ export default {
     window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {
-    console.log('destroyed')
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
@@ -70,6 +68,7 @@ export default {
       color: #fff
       font-size: .4rem
   .header-fixed
+    z-index: 2
     position: fixed
     top: 0
     left: 0
