@@ -34,7 +34,8 @@ export default {
   },
   methods: {
     handleScroll () {
-      const top = document.documentElement.scrollTop
+      console.log('scroll')
+      const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
       if (top > 60) {
         this.showAbs = false
         this.opacityStyle.opacity = (top / 140) > 1 ? 1 : (top / 140)
@@ -45,6 +46,10 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    console.log('destroyed')
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
