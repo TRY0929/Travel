@@ -19,7 +19,6 @@
         @close='handleGallaryClose'
       ></common-gallary>
     </fade-animation>
-    
   </div>
 </template>
 
